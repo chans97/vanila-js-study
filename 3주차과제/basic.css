@@ -1,0 +1,68 @@
+.button {
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+}
+
+.bomb {
+    background-color: rgb(245, 97, 97);
+}
+
+.information_bar{
+    
+    font-family: cursive;
+    background-color: darkgray;
+    height: auto;
+    width: auto;
+    margin-bottom: 3px;
+    border: outset;
+}
+
+.top_div{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result_text{
+    font-size: xxx-large;
+}
+.play_field {
+    border: outset;
+    -webkit-text-stroke: thin;
+}
+
+.custom_field{
+    
+    border: outset;
+    -webkit-text-stroke: thin;
+    display: flex;
+    flex-direction: column;
+}
+
+.custom_div{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+}
+
+.start_button{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    height: 30px;
+    width: auto;
+}
+
+.title_div{
+    
+    font-size: xx-large;
+    text-align: center;
+}
+
+.information_div{
+    
+    font-size: large;
+    display: flex;
+    justify-content: space-evenly;
+}
