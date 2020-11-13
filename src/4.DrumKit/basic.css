@@ -1,0 +1,64 @@
+body{
+    width: 100%;
+    background-image: url("./static/drum.jpg");
+    background-size: cover;
+}
+
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+  }
+
+.key {
+    border: .4rem solid black;
+    border-radius: .5rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem .5rem;
+    transition: all .07s ease;
+    width: 10rem;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    text-shadow: 0 0 .5rem black;
+  }
+
+.drum-sec{
+    width: 90%;
+    margin: 3px auto;
+    margin-top: 20%;
+    display: flex;
+    border: 3px;
+}
+
+.drum-but{
+    border: 1px solid red;
+    flex:1;
+    width:10%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: pink;
+}
+
+.drum-but:hover{
+    background-color: brown;
+}
+
+.key-name{
+    pointer-events: none;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: xx-large;
+}
+
+.Drum-name{
+    pointer-events: none;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: small;
+}

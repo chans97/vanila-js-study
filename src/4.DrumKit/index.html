@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drum</title>
+    <script defer src="./App.js"></script>
+    <link rel="stylesheet" href="./basic.css">
+</head>
+<div class="drum-sec ">
+    <div data-key="65" class="kick-sec drum-but key">
+        <kbd class="key-name">A</kbd>
+        <span class="Drum-name">clap</span>
+    </div>
+    <div data-key="83" class="kick-sec drum-but key">
+        <kbd class="key-name">S</kbd>
+        <span class="Drum-name">hihat</span>
+    </div>
+    <div data-key="68" class="kick-sec drum-but key">
+        <kbd class="key-name">D</kbd>
+        <span class="Drum-name">kick</span>
+    </div>
+    <div data-key="70" class="kick-sec drum-but key">
+        <kbd class="key-name">F</kbd>
+        <span class="Drum-name">openhat</span>
+    </div>
+    <div data-key="71" class="kick-sec drum-but key">
+        <kbd class="key-name">G</kbd>
+        <span class="Drum-name">boom</span>
+    </div>
+    <div data-key="72" class="kick-sec drum-but key">
+        <kbd class="key-name">H</kbd>
+        <span class="Drum-name">ride</span>
+    </div>
+    <div data-key="74" class="kick-sec drum-but key">
+        <kbd class="key-name">J</kbd>
+        <span class="Drum-name">snare</span>
+    </div>
+    <div data-key="75" class="kick-sec drum-but key">
+        <kbd class="key-name">K</kbd>
+        <span class="Drum-name">tom</span>
+    </div>
+    <div data-key="76" class="kick-sec drum-but key">
+        <kbd class="key-name">L</kbd>
+        <span class="Drum-name">tink</span>
+    </div>
+
+
+</div>
+
+<audio data-key="65" src="static/sounds/clap.wav"></audio>
+<audio data-key="83" src="static/sounds/hihat.wav"></audio>
+<audio data-key="68" src="static/sounds/kick.wav"></audio>
+<audio data-key="70" src="static/sounds/openhat.wav"></audio>
+<audio data-key="71" src="static/sounds/boom.wav"></audio>
+<audio data-key="72" src="static/sounds/ride.wav"></audio>
+<audio data-key="74" src="static/sounds/snare.wav"></audio>
+<audio data-key="75" src="static/sounds/tom.wav"></audio>
+<audio data-key="76" src="static/sounds/tink.wav"></audio>
+
+<script>
+    const removeTransition = (e) => {
+        if (e.propertyName !== 'transform') return;
+        e.target.classList.remove('playing');
+    }
+    const playSound = (e) => {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        if (!audio) return;
+
+        key.classList.add('playing');
+        audio.currentTime = 0;
+        audio.play();
+    }
+    //새로운 기능 :: 마우스 클릭으로도 sound 구현 
+    const clickPlay = (e) => {
+        const keycode = e.target.getAttribute(`data-key`);
+        const audio = document.querySelector(`audio[data-key="${keycode}"]`);
+        e.target.classList.add('playing');
+        audio.currentTime = 0;
+        audio.play();
+    }
+    //새로운 기능 :: 마우스 클릭으로도 sound 구현  css에서 글자들은 클릭 안되게 설정 pointer-events: none;
+    const key = document.querySelectorAll(`.drum-but`);
+    key.forEach(key => key.addEventListener('click', clickPlay));
+
+    const keys = Array.from(document.querySelectorAll('.key'));
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+    window.addEventListener('keydown', playSound);
+</script>
+
+<body>
+
+
+</body>
+<script>
+</script>
+
+</html>
