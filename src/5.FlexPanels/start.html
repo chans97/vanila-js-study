@@ -44,10 +44,10 @@
             align-items: center;
             /* Safari transitionend event.propertyName === flex */
             /* Chrome + FF transitionend event.propertyName === flex-grow */
-            transition:
+            /*transition:
                 font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
                 flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
-                background 0.2s;
+                background 0.2s;*/
             font-size: 20px;
             background-size: cover;
             background-position: center;
@@ -83,6 +83,7 @@
         }
 
         /* Flex Children */
+        /* textdiv 를 추가하고 그에 따라 css 변경 */
 
 
         .textdiv>* {
@@ -106,11 +107,16 @@
         }
 
         /*add*/
-        .panel.w100 {
+        .panel.open {
+            transition: width 0.7s,
+                font-size 0.7s;
+            transition-timing-function: cubic-bezier(0.61, -0.19, 0.7, -0.11);
             width: 100%;
             font-size: 40px;
-
         }
+
+        /* 나는 width를 이용해서 구현했고, 답안은 flex를 통해서 구현하였는데,
+                결과적으로 flex 구현이 더 효율적이며, 안정성 높다. */
 
         .textdiv {
             width: 100%;
@@ -119,7 +125,7 @@
         }
 
         .textdiv>*:first-child {
-            transform: translateY(-500%);
+            transform: translateY(-600%);
         }
 
         .textdiv.open-active>*:first-child {
@@ -127,7 +133,7 @@
         }
 
         .textdiv>*:last-child {
-            transform: translateY(+500%);
+            transform: translateY(+600%);
         }
 
         .textdiv.open-active>*:last-child {
@@ -182,22 +188,35 @@
 
 </body>
 <script>
-    const addClass = (e) => {
-        e.target.classList.toggle("w100");
-        e.target.firstElementChild.classList.toggle("open-active");
+    const toggleOpen = (e) => {
+        e.target.classList.toggle("open");
     }
 
-    const addtoggle = (e) => {
-        console.log(e.target.firstElementChild);
+    const toggleSlide = (e) => {
+        console.log(e.propertyName);
+        if (e.propertyName.includes('font')) {
+            console.log(e.target);
+            e.target.firstElementChild.classList.toggle('open-active');
+        }
 
     }
     let panels = document.querySelectorAll(".panel");
-    panels.forEach(eachpanel => eachpanel.addEventListener("click", addClass));
+    panels.forEach(eachpanel => eachpanel.addEventListener("click", toggleOpen));
 
 
     let textdiv = document.querySelector(".textdiv");
-    panel1.addEventListener("transitionend", addtoggle);
+    panels.forEach(eachpanel => eachpanel.addEventListener("transitionend", toggleSlide));
 
+
+    /* 해당 과제를 통해서 배울 수 있던 부분.
+        css
+            1. cubic-bezier(t, t, t, t) 역동적인 웹사이트를 만드는데 효율적이다.
+            2. flex : 5 상위 dom이 display : flex 인 경우 하위 dom 들이 flex: n 을 통해서, 자리 배분 가능
+            3. > 표시는 직계의 노드들만을 의미함.
+
+        js
+            1. addEventListener("transitionend", fun); 의 의미를 상기하고, propertyName이 라는 속성에 대해서도 알게 됨.
+            2. toggle 상기.
 </script>
 
 </html>
