@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chan's Bomb</title>
+    <script defer src="./elt.js"></script>
+    <script defer src="./bomb.js"></script>
+    <link rel="stylesheet" href="./basic.css">
+
+
+</head>
+
+<body>
+    <div>
+        <div class="top_div">
+            <div class="information_bar">
+                <div class="title_div">고전명작 지뢰찾기</div>
+                <div class="information_div">
+                    <div id="time_div" class="time_div">사용자 설정 게임</div>
+                </div>
+            </div>
+            <div class="custom_field">
+
+                <span id="text" class="result_text"></span>
+                <span id="time" class="result_text"></span>
+                <div class="custom_div">
+                    <span>행 : </span>
+                    <input type="number" id="row" value="10">
+                </div>
+                <div class="custom_div">
+                    <span>열 : </span>
+                    <input type="number" name="" id="col" value="10">
+                </div>
+                <div class="custom_div">
+                    <span>지뢰 : </span>
+                    <input type="number" name="" id="bomb" value="15">
+                </div>
+                <div class="start_button">
+                    <input type="button" id="start" value="게임 시작">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const playCustomGame = () => {
+        let row = document.getElementById("row").value;
+        let col = document.getElementById("col").value;
+        let bomb = document.getElementById("bomb").value;
+        var bo = document.querySelector("div");
+        document.body.removeChild(bo);
+        bombGame(document.body, Number(row), Number(col), Number(bomb));
+    }
+
+    document.querySelector("#start").addEventListener("click", playCustomGame)
+
+    function enterkey() {
+        if (window.event.keyCode == 13) {
+            playCustomGame()
+        }
+    }
+    window.addEventListener("keyup", enterkey)
+
+
+
+</script>
+
+</html>
