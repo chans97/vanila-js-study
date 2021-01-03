@@ -1,7 +1,7 @@
 const App = () => {
     const controlsDiv = document.getElementById("controls");
     const inputlist = controlsDiv.querySelectorAll("input");
-    // const inputlist = controlsDiv.getElementsByTagName("input");
+    const inputlists = controlsDiv.getElementsByTagName("input");
     // getElementsByTagName를 통해서 얻은 DOM list는 foreach 사용 불가 
 
     function update() {
@@ -13,7 +13,6 @@ const App = () => {
     inputlist.forEach(input => input.addEventListener('mousemove', update));
 }
 
-// window.onload = App();
-// onload가 분명 더 나중에 실행해야하는데 받아오지 못한다는 문제가 발생 원인불명 
-
-window.addEventListener('DOMContentLoaded', App)
+window.onload = App;
+// onload가 App() 하면 즉시 실행, window.onload = App으로 실행
+//window.addEventListener('DOMContentLoaded', App)
